@@ -3,7 +3,7 @@ const app = express();
 const mongoose = require("mongoose");
 require("dotenv").config();
 const authRoute = require("./routes/auth");
-const userRoute = require('./routes/users')
+const userRoute = require("./routes/users");
 const postRoute = require("./routes/posts");
 const bodyParser = require("body-parser");
 app.use(express.json());
@@ -23,4 +23,3 @@ app.use("/api/posts", postRoute);
 app.listen("3000", () => {
   console.log("Backend Server Running");
 });
-
