@@ -6,7 +6,7 @@ const authRoute = require("./routes/auth");
 const userRoute = require('./routes/users')
 const postRoute = require("./routes/posts");
 const bodyParser = require("body-parser");
-app.use(bodyParser.json());
+app.use(express.json());
 
 mongoose
   .connect(process.env.DATABASE_URL, {

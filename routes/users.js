@@ -2,7 +2,7 @@ const router = require("express").Router();
 const User = require("../models/User");
 const bcrypt = require('bcrypt')
 
-//Registraion System
+//Update
 router.put("/:id", async (req, res) => {
 
 if(req.body.userId === req.params.id){
@@ -12,10 +12,10 @@ if(req.body.userId === req.params.id){
     req.body.password = await bcrypt.hash(req.body.password, salt)
   }
   try {
-   const updatedUser = User.findByIdAndUpdate(req.params.id,{
+   const updatedUser = await User.findByIdAndUpdate(req.params.id,{
      $set : req.body
    })
-
+   res.status(200).json(updatedUser)
   }
   catch (e) {
     res.status(500).json(e);
@@ -26,6 +26,28 @@ if(req.body.userId === req.params.id){
 }
 
 });
+
+
+
+//Dekete
+router.delete("/:id", async (req, res) => {
+
+    try {
+     const DeletedUser = await User.findByIdAndDelete(req.params.id)
+     res.status(200).json("user Successfully deleted")
+    }
+    catch (e) {
+      res.status(500).json(e);
+      console.log(e);
+    }
+ 
+  
+  });
+  
+
+
+
+
 
 
 
